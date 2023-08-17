@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Sophie Bluel - Architecte D'intérieur</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/5131320379.js"
-      crossorigin="anonymous"
-    ></script>
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="./assets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5131320379.js" crossorigin="anonymous" ></script>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./assets/style.css">
   </head>
   <body>
     <div class="background_header" id="background_header">
@@ -24,13 +19,10 @@
         <i class="fa-regular whitecolor fa-pen-to-square"></i>
         <div class="nav_text">
           <p class="title">Mode édition</p>
-          <button id="Btn_header" class="publish">
-            publier les changements
-          </button>
+          <button id="Btn_header" class="publish">publier les changements</button>
         </div>
       </div>
     </div>
-
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
@@ -39,19 +31,17 @@
           <li>contact</li>
           <li>
             <a id="Login" href="./assets/html/login.html" class="Lien_login"
-              >login</a
-            >
+              >login</a>
           </li>
           <li><a id="Logout" href="./index.html">logout</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" ></li>
         </ul>
       </nav>
     </header>
-
     <main>
-      <section id="introduction">
+      <div id="introduction">
         <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <img src="./assets/images/sophie-bluel.png" alt="" >
           <div class="Modifier_1">
             <i class="fa-regular Blackcolor fa-pen-to-square"></i>
             <p>modifier</p>
@@ -75,35 +65,23 @@
             : architecte DPLG, décorateur(trice).
           </p>
         </article>
-      </section>
+      </div>
 
       <div class="js_Modal">
         <h2>Mes Projets</h2>
         <div class="Mes_projets">
           <p>
-            <a
-              href="#"
-              class="Modifier_2"
-              role="button"
-              data-target="#Modal"
-              data-toggle="Modal"
-              ><i class="fa-regular Blackcolor fa-pen-to-square"></i>
-              modifier</a
-            >
+            <a href="#" class="Modifier_2" role="button" data-target="#Modal"
+              data-toggle="Modal"><i class="fa-regular Blackcolor fa-pen-to-square"></i>modifier</a>
           </p>
         </div>
       </div>
-
       <div id="portfolio">
         <div class="filters">
           <button class="buttonportfolio" data-category-id="all">Tous</button>
           <button class="buttonportfolio" data-category-id="1">Objets</button>
-          <button class="buttonportfolio" data-category-id="2">
-            Appartements
-          </button>
-          <button class="buttonportfolio" data-category-id="3">
-            Hôtels & restaurants
-          </button>
+          <button class="buttonportfolio" data-category-id="2">Appartements</button>
+          <button class="buttonportfolio" data-category-id="3">Hôtels & restaurants</button>
         </div>
         <div class="gallery"></div>
       </div>
@@ -112,34 +90,30 @@
         <p>Vous avez un projet ? Discutons-en !</p>
         <form action="#" method="post">
           <label for="name">Nom</label>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" >
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" >
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+          <input type="submit" value="Envoyer">
         </form>
       </section>
       <!-- 1er fenêtre modale -->
-      <aside class="modal" id="modal" role="dialog">
+      <aside class="modal" id="modal">
         <div class="modal_content">
-          <div id="modalOneClose" class="modal_close" data-dissmiss="dialog">
-            X
-          </div>
+          <div id="modalOneClose" class="modal_close" data-dissmiss="dialog"> X</div>
           <h2 class="modal_title">Galerie photo</h2>
           <div class="add_Gallery" id="modalGallery"></div>
-          <hr />
+          <hr>
           <!--<div class="arrows_multidirection"><i class="fa-solid fa-arrows-up-down-left-right"></i></div>-->
           <button type="button" class="Add_photo">Ajouter une photo</button>
           <p class="delete_Gallery">Supprimer la gallerie</p>
         </div>
       </aside>
       <!-- le formulaire de la modale -->
-      <aside id="next_modal" role="dialog" style="display: none">
+      <aside id="next_modal" style="display: none">
         <div class="next_modal-content">
-          <div id="modalTwoClose" class="modal_close" data-dissmiss="dialog">
-            X
-          </div>
+          <div id="modalTwoClose" class="modal_close" data-dissmiss="dialog"> X</div>
           <div class="add_Gallerynext_modal">
             <a href="#"
               ><i id="arrow_back" class="fa-solid fa-arrow-left"></i
@@ -156,23 +130,21 @@
                   name="image"
                   id="inputImg"
                   accept="image/*"
-                  required
-                />
+                  required>
                 <p class="Format_Photo">jpg png : 4mo max</p>
               </div>
-
               <div id="title_Work">
-                <label for="title">Titre :</label>
-                <input type="text" id="title" name="title" required />
+                <label for="title">Titre </label>
+                <input type="text" id="title" name="title" required>
               </div>
               <div id="categoryWork">
-                <label for="category">Catégorie :</label>
+                <label for="category">Catégorie</label>
                 <select id="category" name="category" required>
                   <option value="" selected></option>
                   <option value="1">Objet</option>
                   <option value="2">Appartement</option>
-                  <option value="3">Hôtel ou restaurant</option></select
-                ><br />
+                  <option value="3">Hôtel & restaurant</option>
+                </select><br>
               </div>
               <div>
                 <div class="Gray_Bar"></div>
@@ -180,8 +152,7 @@
                   type="submit"
                   class="boutonModale"
                   id="SubmitBtn"
-                  value="Valider"
-                />
+                  value="Valider">
                 <p id="errorMessage"></p>
               </div>
             </form>
@@ -196,7 +167,6 @@
         </ul>
       </nav>
     </footer>
-
     <script src="./assets/scripts/script.js"></script>
     <script src="./assets/scripts/admin.js"></script>
   </body>

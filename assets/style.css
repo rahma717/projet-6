@@ -163,6 +163,7 @@ h2 {
   font-weight: 700;
   font-size: 30px;
   color: #1d6154;
+  margin-top: 36px;
 }
 nav ul {
   display: flex;
@@ -398,7 +399,7 @@ input[type="password"] {
   display: flex;
   margin-left: 7px;
   padding: 8px;
-  size: 14px;
+  font-size: 14px;
   gap: 6px;
 }
 
@@ -416,7 +417,8 @@ input[type="password"] {
   color: #000000;
   gap: 6px;
 }
-/*Modal*/
+/*Modals*/
+/*1er fenêtre modale*/
 .modal {
   position: fixed;
   background-color: #ffff;
@@ -459,6 +461,16 @@ input[type="password"] {
   font-size: 26px;
   font-weight: 400;
 }
+.add_Gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.modal_content hr {
+  border: 1px solid #b3b3b3;
+  width: 75%;
+  margin-bottom: 23px;
+}
 .arrows_multidirection {
   margin-right: 316px;
   top: 126px;
@@ -469,12 +481,6 @@ input[type="password"] {
   font-size: 11px;
   border-radius: 2px;
 }
-.modal_content hr {
-  border: 1px solid #b3b3b3;
-  width: 75%;
-  margin-bottom: 23px;
-}
-
 .Add_photo {
   padding: 10px 20px;
   background-color: #1d6154;
@@ -482,34 +488,41 @@ input[type="password"] {
   border-radius: 60px;
   border: none;
   color: #ffffff;
-}
-#link_photo {
-  text-decoration: none;
-  font-family: "Work Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17px;
-  text-align: center;
-  color: white;
-  border-radius: 60px;
+  margin-bottom: 8px;
 }
 .delete_Gallery {
   color: #d65353;
   font-family: "Work Sans", sans-serif;
   font-size: 14px;
-  margin-top: 22px;
+  margin-bottom: 34px;
 }
-.add_Gallery img {
-  width: 100%;
-  height: 100px;
-}
-.add_Gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-/* next modal */
 
+/* next modal */
+#next_modal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+}
+.next_modal-content {
+  width: 450px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.add_Gallerynext_modal {
+  width: 100%;
+}
 .fa-arrow-left {
   color: black;
   margin-left: 10px;
@@ -545,25 +558,6 @@ input[type="password"] {
   justify-content: center;
   align-items: center;
 }
-.toshow {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cardAddphoto .fa-solid {
-  position: absolute;
-  color: #b9c5cc;
-  font-size: 52px;
-  top: 30px;
-  left: 180px;
-}
-#image {
-  font-size: 13px;
-  position: absolute;
-  top: 74px;
-}
 .photo_to-add {
   color: #306685;
   display: flex;
@@ -574,6 +568,14 @@ input[type="password"] {
   width: 173px;
   height: 36px;
 }
+#image {
+  font-size: 13px;
+  position: absolute;
+  top: 74px;
+}
+#inputImg {
+  display: none;
+}
 .Format_Photo {
   display: flex;
   justify-content: center;
@@ -581,6 +583,62 @@ input[type="password"] {
   position: absolute;
   top: 150px;
 }
+#title_Work,
+#categoryWork {
+  margin-bottom: 20px;
+}
+#category {
+  display: flex;
+  height: 55px;
+  width: 420px;
+  padding-left: 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  border: none;
+}
+#categoryWork label,
+#title_Work label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.Gray_Bar {
+  border: 1px solid #b3b3b3;
+  margin: 57px 105px;
+  width: 420px;
+}
+#SubmitBtn {
+  background-color: #a7a7a7;
+  width: 230px;
+  height: 36px;
+}
+#link_photo {
+  text-decoration: none;
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  text-align: center;
+  color: white;
+  border-radius: 60px;
+}
+.add_Gallery img {
+  width: 100%;
+  height: 100px;
+}
+.toshow {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardAddphoto .fa-solid {
+  position: absolute;
+  color: #b9c5cc;
+  font-size: 52px;
+  top: 30px;
+  left: 180px;
+}
+
 #title {
   display: flex;
   flex-direction: column;
@@ -608,26 +666,6 @@ label[for="category"] {
   font-weight: 500;
   font-family: "Work Sans", sans-serif;
 }
-#category {
-  display: flex;
-  height: 55px;
-  width: 420px;
-  padding-left: 20px;
-  background: #ffffff;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  border: none;
-}
-.Gray_Bar {
-  border: 1px solid #b3b3b3;
-  margin: 57px 105px;
-  width: 420px;
-}
-#SubmitBtn {
-  background-color: #a7a7a7;
-  width: 230px;
-  height: 36px;
-}
-
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
@@ -644,37 +682,6 @@ input[type="submit"] {
   border-radius: 59px;
   height: 40px;
 }
-#next_modal {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: none;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-}
-.next_modal-content {
-  width: 450px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.add_Gallerynext_modal {
-  width: 100%;
-}
-
-#inputImg {
-  display: none;
-}
-
 .delete_icon {
   position: absolute;
   top: 8px;
@@ -699,19 +706,9 @@ input[type="submit"] {
   color: #000000;
   font-size: 12px;
 }
-
 .temporaryImage {
   width: 69%;
   height: 100%;
   object-fit: cover;
 }
-#title_Work,
-#categoryWork {
-  margin-bottom: 20px;
-}
 
-#categoryWork label,
-#title_Work label {
-  display: inline-block;
-  margin-bottom: 10px;
-}
