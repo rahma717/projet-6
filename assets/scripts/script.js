@@ -1,26 +1,11 @@
 const galleryElement = document.querySelector(".gallery");
 const filtersElement = document.querySelector(".filters");
-const formSelectElement = document.querySelector("#filters_options");
+const formSelectElement = document.getElementById("category");
 // Récupérer l'élément contenant la galerie de photos
 const galleryContainer = document.querySelector(".add_Gallery");
 let worksList = [];
 let categoriesList = [];
 let filtersSelected = "all";
-
-let categories = [
-  {
-    id: 1,
-    name: "objets",
-  },
-  {
-    id: 2,
-    name: "Appartements",
-  },
-  {
-    id: 3,
-    name: "Hotels & restaurants",
-  },
-];
 
 const getWorks = async () => {
   try {
@@ -28,7 +13,6 @@ const getWorks = async () => {
     const data = await response.json();
     worksList = data;
     createGallery(worksList);
-    createoptionsSelectForm(categories);
     createGalleryModalElements(worksList);
   } catch (error) {
     console.error(error);
@@ -44,9 +28,10 @@ const removeExistingProjects = () => {
 const createGallery = (worksList) => {
   // Supprime les projets existants de la galerie
   removeExistingProjects();
+  galleryElement.innerHTML = " ";
 
   // Maintenant, vous pouvez ajouter les nouveaux projets à la galerie
-  galleryElement.innerHTML = " ";
+  
   worksList.forEach((work) => {
     const figureElement = document.createElement("figure");
     const galleryImg = document.createElement("img");
@@ -64,7 +49,7 @@ const createGallery = (worksList) => {
     galleryElement.append(figureElement);
   });
 };
-
+// supprimer les photos de modals 
 async function deleteWork(workId) {
   try {
     const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
@@ -94,24 +79,24 @@ const createFilteredWorksList = (categoryId) => {
     createGallery(filteredList);
   }
 };
+
+// créer des options à ajouter dans la modal
 const createoptionsSelectForm = (optionsList) => {
-  // Vérifier que formSelectElement n'est pas null avant de continuer
-  if (formSelectElement) {
-    formSelectElement.innerHTML = "";
+  // Création de l'option "Tous"
     const optionOne = document.createElement("option");
-    optionOne.value = "all";
-    optionOne.innerHTML = "Tous";
+    optionOne.value = "";
+    optionOne.innerHTML = "";
 
-    formSelectElement.appendChild(optionOne);
-
+    formSelectElement.add(optionOne);
+    // Parcours de chaque catégorie dans optionsList
     optionsList.forEach((category) => {
+    // Création de l'élément option
       const optionElement = document.createElement("option");
       optionElement.value = category.id;
       optionElement.innerHTML = category.name;
-
-      formSelectElement.appendChild(optionElement);
-    });
-  }
+  // Ajout de l'option à formSelectElement
+      formSelectElement.add(optionElement);
+    }); 
 };
 
 const getCategories = async () => {
@@ -120,7 +105,29 @@ const getCategories = async () => {
     const data = await response.json();
     categoriesList = data;
     console.log(categoriesList);
+     categoriesList.forEach((categorie) => {
+      const categoryElement = document.createElement("button");
+      categoryElement.setAttribute("data-category-id",categorie.id);
+      categoryElement.setAttribute("class","buttonportfolio");
+      categoryElement.innerHTML=categorie.name;
+      filtersElement.append(categoryElement);
+    });
+    createoptionsSelectForm(categoriesList);
     getWorks();
+    // recuperer l'ID de la categorie et rendre mes bouttons fonctionnels
+
+const filterButtons = document.querySelectorAll(".filters button");
+// Ajouter un gestionnaire d'événements à chaque bouton
+filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+  // Récupérer l'identifiant de la catégorie à partir de l'attribut data-category-id
+    const categoryId = button.dataset.categoryId;
+    // Mettre à jour la variable filtersSelected avec la catégorie sélectionnée
+    filtersSelected = categoryId;
+    // Appeler la fonction createFilteredWorksList avec la catégorie sélectionnée
+      createFilteredWorksList(filtersSelected);
+  });
+});
   } catch (error) {
     console.error(error);
   }
@@ -131,18 +138,8 @@ const getCategories = async () => {
 getCategories();
 createFilteredWorksList(filtersSelected);
 
-// recuperer l'ID de la categorie et rendre mes bouttons fonctionnels
 
-const filterButtons = document.querySelectorAll(".filters button");
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const categoryId = button.dataset.categoryId;
-    filtersSelected = categoryId;
-    createFilteredWorksList(filtersSelected);
-  });
-});
-
-// Fonction pour supprimer un élément
+  // Fonction pour supprimer un élément
 const deleteItem = async (id) => {
   try {
     const token = getToken();
