@@ -129,8 +129,10 @@ photoForm.addEventListener("submit", async (event) => {
 
     if (response.ok) {
       console.log("Projet ajouté avec succès");
+      clearForm();
       closeModal();
       getWorks();
+      
     } else {
       console.error("Erreur lors de l'ajout du projet");
     }

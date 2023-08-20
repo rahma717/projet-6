@@ -4,8 +4,8 @@ const errorMessage = document.querySelector('.error');
 //Quand on submit
 
 form.addEventListener('submit', (event) => {
-     // On empêche le comportement par défaut
-    event.preventDefault();
+    // On empêche le comportement par défaut
+     event.preventDefault();
     //on récupère les 2 champs et on affiche leur valeur
     // sélectionner l'email et le mot de passe
     const email = document.getElementById("email").value;
