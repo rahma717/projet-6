@@ -6,7 +6,6 @@ const filters = document.querySelector("#portfolio .filters");
 const buttonModifier_1 = document.querySelector(".Modifier_1");
 const buttonModifier_2 = document.querySelector(".Modifier_2");
 const add_photo = document.querySelector(".Add_photo");
-
 const token = localStorage.getItem("token");
 
 filters.style.display = "block";
@@ -97,57 +96,65 @@ window.addEventListener("click", function (event) {
 // Récupérer le formulaire de la modale
 const photoForm = document.getElementById("PhotoForm");
 const cardAddPhotoElement = document.querySelector(".cardAddphoto");
-
+// Lorsque l'utilisateur choisit un fichier image dans l'input avec l'ID "inputImg"
 document.getElementById("inputImg").addEventListener("change", function (e) {
+   // Crée une URL pour le fichier image sélectionné
   const fileurl = URL.createObjectURL(e.target.files[0]);
+   // Crée un élément <img> et configure son attribut src avec l'URL du fichier
   const newImg = document.createElement("img");
   newImg.src = fileurl;
   newImg.style.height = "100%";
   newImg.style.objectFit = "cover";
-
+// Cache certains éléments dans le conteneur "cardAddPhotoElement"
   cardAddPhotoElement.querySelector("i").style.display = "none";
   cardAddPhotoElement.querySelector("p").style.display = "none";
   cardAddPhotoElement.querySelector("label").style.display = "none";
+    // Ajoute l'image nouvellement créée au conteneur
   cardAddPhotoElement.appendChild(newImg);
 });
-
+// Lorsque l'utilisateur soumet le formulaire
 photoForm.addEventListener("submit", async (event) => {
+   // Empêche le comportement par défaut du formulaire (rechargement de la page)
   event.preventDefault();
-
+  // Crée un objet FormData à partir du formulaire
   const formData = new FormData(photoForm);
 
   try {
+      // Envoie une requête POST au serveur avec les données du formulaire
     const response = await fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,// Utilise un jeton d'autorisation
       },
-      body: formData,
+      body: formData,// Les données du formulaire sont envoyées dans le corps de la requête
     });
 
     console.log(response);
-
+    // Si la réponse du serveur est réussie (code de statut 200 OK)
     if (response.ok) {
       console.log("Projet ajouté avec succès");
+      // Réinitialise le formulaire, ferme la modale et met à jour la galerie
       clearForm();
       closeModal();
       getWorks();
       
     } else {
+      // Si la réponse du serveur n'est pas réussie, affiche une erreur
       console.error("Erreur lors de l'ajout du projet");
     }
   } catch (error) {
+       // Gère les erreurs potentielles lors de l'envoi de la requête
     console.error(error);
   }
 });
-
-function clearForm() {
+// Fonction pour réinitialiser le formulaire et afficher les éléments masqués
+  function clearForm() {
   photoForm.reset();
   const imgForm = cardAddPhotoElement.querySelector("img");
   if (imgForm) {
     cardAddPhotoElement.querySelector("i").style.display = "block";
-    cardAddPhotoElement.querySelector("p").style.display = "block";
     cardAddPhotoElement.querySelector("label").style.display = "flex";
+    cardAddPhotoElement.querySelector("p").style.display = "block";
     imgForm.remove();
   }
 }
